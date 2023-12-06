@@ -1,5 +1,6 @@
 file = open(r'06_input.txt')
 best_time = 0
+ways_to_beat = 1 
 times = []
 records = []
 # Setting time and distance lists
@@ -11,7 +12,7 @@ for line in file:
         line = line[11:]
         records = list(map(int, line.split()))
     
-def find_better_times(timey, recordy):
+def find_better_distances(timey, recordy):
     better_distances = []
     my_distance = 0
     time_left = time
@@ -31,7 +32,11 @@ print(records)
 for time, record in zip(times, records):
     print(f'Time: {time}')
     print(f'Current Record: {record}')
-    print(find_better_times(time, record))
-    #print(f'Better times: {better[0]}: {better[1]}')
+    better_distances = find_better_distances(time, record)
+    ways_to_beat *= len(better_distances)
+    print(f'Better distances: {len(better_distances)}')
     print()
     count += 1
+
+
+print(ways_to_beat)
