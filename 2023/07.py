@@ -17,7 +17,7 @@ for game in games:
     for card in game[0]:
         card_values.append(find_strength(card))
     counter = Counter(card_values)
-
     print(counter)
+    print()
 
 print(games)
