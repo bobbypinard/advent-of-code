@@ -1,26 +1,21 @@
 import re
-file = open(r'07_input.txt')
+from collections import Counter
+
+games = open(r'07_input.txt').read().splitlines()
+
+possible_cards = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+
+def find_strength(card):
+    return possible_cards.index(card) + 1
 
 # Creating a list of lists for all the values
-vals = []
-for line in file:
-    val = list(line.split())
-    val[1] = int(val[1])
-    vals.append(val)
-print(vals)
+for game in games:
+    card_values = []
+    game = game.split()
+    print(game[0])
+    for card in game[0]:
+        card_values.append(find_strength(card))
+    counter = Counter(card_values)
+    print(counter)
 
-# Parsing the data
-def find_rank(val):
-    num = 0
-    for char in val:
-        indexes = [x.start() for x in re.finditer(char, val)]
-    return indexes
-
-def find_multiples(val):
-    multiples = []
-    for ch in val:
-        multiples.append([i for i, letter in enumerate(val) if letter == ch])
-    return multiples
-
-for val in vals:
-    print(find_multiples(val[0]))
+print(games)
