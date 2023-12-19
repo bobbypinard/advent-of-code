@@ -13,9 +13,11 @@ for game in games:
     card_values = []
     game = game.split()
     print(game[0])
+
     for card in game[0]:
         card_values.append(find_strength(card))
     counter = Counter(card_values)
+
     print(counter)
 
 print(games)
